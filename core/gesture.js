@@ -692,8 +692,8 @@ Blockly.Gesture.prototype.handleBlockStart = function(e, block) {
  */
 Blockly.Gesture.prototype.handleCommentStart = function(e, comment) {
   goog.asserts.assert(!this.hasStarted_,
-     'Tried to call gesture.handleCommentStart, but the gesture had already been ' +
-     'started.');
+      'Tried to call gesture.handleCommentStart, but the gesture had ' +
+      'already been started.');
   this.setStartComment(comment);
   this.mostRecentEvent_ = e;
 };
