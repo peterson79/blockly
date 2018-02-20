@@ -328,7 +328,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.TEXT_CHARAT_HELPURL = "https://github.com/google/blockly/wiki/Text#extracting-text";  // untranslated
 /** @export */ Blockly.Msg.TEXT_CHARAT_LAST = "lấy ký tự cuối cùng";
 /** @export */ Blockly.Msg.TEXT_CHARAT_RANDOM = "lấy ký tự bất kỳ";
-/** @export */ Blockly.Msg.TEXT_CHARAT_TAIL = "";
+/** @export */ Blockly.Msg.TEXT_CHARAT_TAIL = "";  // untranslated
 /** @export */ Blockly.Msg.TEXT_CHARAT_TITLE = "trong văn bản %1 %2";
 /** @export */ Blockly.Msg.TEXT_CHARAT_TOOLTIP = "Hoàn trả ký tự ở vị trí đặt ra.";
 /** @export */ Blockly.Msg.TEXT_COUNT_HELPURL = "https://github.com/google/blockly/wiki/Text#counting-substrings";  // untranslated
@@ -345,7 +345,7 @@ goog.require('Blockly.Msg');
 /** @export */ Blockly.Msg.TEXT_GET_SUBSTRING_START_FIRST = "lấy từ ký tự đầu tiên";
 /** @export */ Blockly.Msg.TEXT_GET_SUBSTRING_START_FROM_END = "lấy từ phía cuối, ký tự thứ";
 /** @export */ Blockly.Msg.TEXT_GET_SUBSTRING_START_FROM_START = "lấy từ ký tự thứ";
-/** @export */ Blockly.Msg.TEXT_GET_SUBSTRING_TAIL = "";
+/** @export */ Blockly.Msg.TEXT_GET_SUBSTRING_TAIL = "";  // untranslated
 /** @export */ Blockly.Msg.TEXT_GET_SUBSTRING_TOOLTIP = "Hoàn trả một mảng ký tự ấn định từ trong văn bản.";
 /** @export */ Blockly.Msg.TEXT_INDEXOF_HELPURL = "https://github.com/google/blockly/wiki/Text#finding-text";  // untranslated
 /** @export */ Blockly.Msg.TEXT_INDEXOF_OPERATOR_FIRST = "tìm sự có mặt đầu tiên của";
