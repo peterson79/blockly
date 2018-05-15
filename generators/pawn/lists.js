@@ -21,7 +21,7 @@ Blockly.Pawn['lists_create_with'] = function(block) {
   var elements = new Array(block.itemCount_);
   for (var i = 0; i < block.itemCount_; i++) {
     elements[i] = Blockly.Pawn.valueToCode(block, 'ADD' + i,
-        Blockly.Pawn.ORDER_NONE) || 'null';
+        Blockly.Pawn.ORDER_NONE) || '0';
   }
   var code = '[' + elements.join(', ') + ']';
   return [code, Blockly.Pawn.ORDER_ATOMIC];
@@ -30,25 +30,48 @@ Blockly.Pawn['lists_create_with'] = function(block) {
 Blockly.Pawn['lists_repeat'] = function(block) {
   // Create a list with one element repeated.
   var element = Blockly.Pawn.valueToCode(block, 'ITEM',
-      Blockly.Pawn.ORDER_NONE) || 'null';
+      Blockly.Pawn.ORDER_NONE) || '0';
   var repeatCount = Blockly.Pawn.valueToCode(block, 'NUM',
       Blockly.Pawn.ORDER_NONE) || '0';
-  var code = 'new List.filled(' + repeatCount + ', ' + element + ')';
-  return [code, Blockly.Pawn.ORDER_UNARY_POSTFIX];
+
+  var code = '';
+
+  if(isNaN(element)){
+    var elementSizeVar = Blockly.Pawn.variableDB_.getDistinctName(
+          'size', Blockly.Variables.NAME_TYPE);
+    if(element.indexOf('"') == 0){
+
+    }else{
+
+    }
+
+  }else{
+      var elements = [];
+      for(var i = 0; i < repeatCount; i++){
+          elements.push(element);
+      }
+      code = '[' + elements.join(', ') + ']';
+  }
+
+
+
+
+  return [code, Blockly.Pawn.ORDER_ATOMIC];
 };
 
 Blockly.Pawn['lists_length'] = function(block) {
   // String or array length.
   var list = Blockly.Pawn.valueToCode(block, 'VALUE',
       Blockly.Pawn.ORDER_UNARY_POSTFIX) || '[]';
-  return [list + '.length', Blockly.Pawn.ORDER_UNARY_POSTFIX];
+  return ['ispacked(' + list +') ? sizeof ' + list +' * 4: sizeof ' + list +'', Blockly.Pawn.ORDER_UNARY_POSTFIX];
 };
 
 Blockly.Pawn['lists_isEmpty'] = function(block) {
   // Is the string null or array empty?
   var list = Blockly.Pawn.valueToCode(block, 'VALUE',
-      Blockly.Pawn.ORDER_UNARY_POSTFIX) || '[]';
-  return [list + '.isEmpty', Blockly.Pawn.ORDER_UNARY_POSTFIX];
+      Blockly.Pawn.ORDER_UNARY_POSTFIX) || '[0]';
+
+  return ['strlen('+list+') != 0 ? true : false', Blockly.Pawn.ORDER_UNARY_POSTFIX];
 };
 
 Blockly.Pawn['lists_indexOf'] = function(block) {
@@ -234,7 +257,7 @@ Blockly.Pawn['lists_setIndex'] = function(block) {
   var list = Blockly.Pawn.valueToCode(block, 'LIST',
       Blockly.Pawn.ORDER_UNARY_POSTFIX) || '[]';
   var value = Blockly.Pawn.valueToCode(block, 'TO',
-      Blockly.Pawn.ORDER_ASSIGNMENT) || 'null';
+      Blockly.Pawn.ORDER_ASSIGNMENT) || '0';
   // Cache non-trivial values to variables to prevent repeated look-ups.
   // Closure, which accesses and modifies 'list'.
   function cacheList() {

@@ -29,13 +29,13 @@ Blockly.Pawn['procedures_defreturn'] = function(block) {
   if (returnValue) {
     returnValue = Blockly.Pawn.INDENT + 'return ' + returnValue + ';\n';
   }
-  var returnType = returnValue ? 'dynamic' : 'void';
+  var returnType = returnValue ? '' : '';
   var args = [];
   for (var i = 0; i < block.arguments_.length; i++) {
     args[i] = Blockly.Pawn.variableDB_.getName(block.arguments_[i],
         Blockly.Variables.NAME_TYPE);
   }
-  var code = returnType + ' ' + funcName + '(' + args.join(', ') + ') {\n' +
+  var code = 'public ' + returnType + ' ' + funcName + '(' + args.join(', ') + ') {\n' +
       branch + returnValue + '}';
   code = Blockly.Pawn.scrub_(block, code);
   // Add % so as not to collide with helper functions in definitions list.
@@ -54,7 +54,7 @@ Blockly.Pawn['procedures_callreturn'] = function(block) {
   var args = [];
   for (var i = 0; i < block.arguments_.length; i++) {
     args[i] = Blockly.Pawn.valueToCode(block, 'ARG' + i,
-        Blockly.Pawn.ORDER_NONE) || 'null';
+        Blockly.Pawn.ORDER_NONE) || '0';
   }
   var code = funcName + '(' + args.join(', ') + ')';
   return [code, Blockly.Pawn.ORDER_UNARY_POSTFIX];
@@ -67,7 +67,7 @@ Blockly.Pawn['procedures_callnoreturn'] = function(block) {
   var args = [];
   for (var i = 0; i < block.arguments_.length; i++) {
     args[i] = Blockly.Pawn.valueToCode(block, 'ARG' + i,
-        Blockly.Pawn.ORDER_NONE) || 'null';
+        Blockly.Pawn.ORDER_NONE) || '0';
   }
   var code = funcName + '(' + args.join(', ') + ');\n';
   return code;
@@ -80,7 +80,7 @@ Blockly.Pawn['procedures_ifreturn'] = function(block) {
   var code = 'if (' + condition + ') {\n';
   if (block.hasReturnValue_) {
     var value = Blockly.Pawn.valueToCode(block, 'VALUE',
-        Blockly.Pawn.ORDER_NONE) || 'null';
+        Blockly.Pawn.ORDER_NONE) || '0';
     code += Blockly.Pawn.INDENT + 'return ' + value + ';\n';
   } else {
     code += Blockly.Pawn.INDENT + 'return;\n';

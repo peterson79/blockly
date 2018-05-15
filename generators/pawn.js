@@ -1,7 +1,4 @@
 /**
- * Created by jasonpeterson on 2/20/18.
- */
-/**
  * @license
  * Visual Blocks Language
  *
@@ -46,9 +43,12 @@ Blockly.Pawn = new Blockly.Generator('Pawn');
  * @private
  */
 Blockly.Pawn.addReservedWords(
+    // https://www.pawnlang.org/docs/spec/latest/pawn-language-specification.pdf
+    // Section 16.1.1
     'assert,break,case,catch,class,const,continue,default,do,else,enum,' +
     'extends,false,final,finally,for,if,in,is,new,null,rethrow,return,super,' +
     'switch,this,throw,true,try,var,void,while,with,' +
+    // https://api.pawnlang.org/pawn_core.html
     'print,identityHashCode,identical,BidirectionalIterator,Comparable,' +
     'double,Function,int,Invocation,Iterable,Iterator,List,Map,Match,num,' +
     'Pattern,RegExp,Set,StackTrace,String,StringSink,Type,bool,DateTime,' +
@@ -63,6 +63,7 @@ Blockly.Pawn.addReservedWords(
 
 /**
  * Order of operation ENUMs.
+ * https://www.pawnlang.org/docs/pawn-up-and-running/ch02.html#operator_table
  */
 Blockly.Pawn.ORDER_ATOMIC = 0;         // 0 "" ...
 Blockly.Pawn.ORDER_UNARY_POSTFIX = 1;  // expr++ expr-- () [] . ?.

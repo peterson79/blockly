@@ -28,9 +28,9 @@ Blockly.Pawn['controls_repeat_ext'] = function(block) {
   if (!repeats.match(/^\w+$/) && !Blockly.isNumber(repeats)) {
     var endVar = Blockly.Pawn.variableDB_.getDistinctName(
         'repeat_end', Blockly.Variables.NAME_TYPE);
-    code += 'var ' + endVar + ' = ' + repeats + ';\n';
+    code += 'new ' + endVar + ' = ' + repeats + ';\n';
   }
-  code += 'for (int ' + loopVar + ' = 0; ' +
+  code += 'for (new ' + loopVar + ' = 0; ' +
       loopVar + ' < ' + endVar + '; ' +
       loopVar + '++) {\n' +
       branch + '}\n';
@@ -87,7 +87,7 @@ Blockly.Pawn['controls_for'] = function(block) {
     if (!argument0.match(/^\w+$/) && !Blockly.isNumber(argument0)) {
       var startVar = Blockly.Pawn.variableDB_.getDistinctName(
           variable0 + '_start', Blockly.Variables.NAME_TYPE);
-      code += 'var ' + startVar + ' = ' + argument0 + ';\n';
+      code += 'new ' + startVar + ' = ' + argument0 + ';\n';
     }
     var endVar = argument1;
     if (!argument1.match(/^\w+$/) && !Blockly.isNumber(argument1)) {
@@ -126,7 +126,12 @@ Blockly.Pawn['controls_forEach'] = function(block) {
       Blockly.Pawn.ORDER_ASSIGNMENT) || '[]';
   var branch = Blockly.Pawn.statementToCode(block, 'DO');
   branch = Blockly.Pawn.addLoopTrap(branch, block.id);
-  var code = 'for (var ' + variable0 + ' in ' + argument0 + ') {\n' +
+
+  var loopVar = Blockly.Pawn.variableDB_.getDistinctName(
+      'count', Blockly.Variables.NAME_TYPE);
+
+  var code = 'for (new ' + loopVar + ' = 0; ' + loopVar + ' < (sizeof ' + argument0 + '); '+ loopVar +'++) {\n' +
+      variable0 + ' = ' + argument0 + '[' + loopVar + '];\n' +
       branch + '}\n';
   return code;
 };

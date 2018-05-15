@@ -92,7 +92,7 @@ Blockly.Pawn['logic_boolean'] = function(block) {
 
 Blockly.Pawn['logic_null'] = function(block) {
   // Null data type.
-  return ['null', Blockly.Pawn.ORDER_ATOMIC];
+  return ['0', Blockly.Pawn.ORDER_ATOMIC];
 };
 
 Blockly.Pawn['logic_ternary'] = function(block) {
@@ -100,9 +100,9 @@ Blockly.Pawn['logic_ternary'] = function(block) {
   var value_if = Blockly.Pawn.valueToCode(block, 'IF',
       Blockly.Pawn.ORDER_CONDITIONAL) || 'false';
   var value_then = Blockly.Pawn.valueToCode(block, 'THEN',
-      Blockly.Pawn.ORDER_CONDITIONAL) || 'null';
+      Blockly.Pawn.ORDER_CONDITIONAL) || '0';
   var value_else = Blockly.Pawn.valueToCode(block, 'ELSE',
-      Blockly.Pawn.ORDER_CONDITIONAL) || 'null';
+      Blockly.Pawn.ORDER_CONDITIONAL) || '0';
   var code = value_if + ' ? ' + value_then + ' : ' + value_else;
   return [code, Blockly.Pawn.ORDER_CONDITIONAL];
 };
